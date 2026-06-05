@@ -11,6 +11,7 @@
     "start": "node server.js"
   },
   "dependencies": {
-    "formik": "^2.4.9"
+    "cors": "^2.8.6",
+    "express": "^5.2.1"
   }
 }
