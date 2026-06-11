@@ -26,9 +26,19 @@ server.get("/", (request, response) => {
 server.get("/destinations", (request, response) => {
     response.json(db.destination);
 });
+
+server.get("/hotels/:id", (request, response) => {
+    const hotelId = +request.params.id;
+    const hotel = db.hotels.find((item) => item.id === hotelId);
+    if (hotel) {
+        response.json(hotel);
+    } else {
+        response.status(404).json({error: "Hotel not found"});
+    }
+});
+
 server.get("/hotels", (request, response) => {
     const { search, city, destination, hotel_rating } = request.query;
-
     let hotels = [...db.hotels];
     if (search) {
         hotels = hotels.filter((hotel) =>
@@ -44,7 +54,6 @@ server.get("/hotels", (request, response) => {
     if (hotel_rating) {
         hotels = hotels.filter((hotel) => hotel.hotel_rating >= Number(hotel_rating));
     }
-    console.log(`[Бекенд] Пошук міста: "${targetCity}". Знайдено готелів: ${hotels.length}`);
     response.json(hotels);
 });
 
@@ -53,7 +62,6 @@ server.post('/search', (request, response) => {
     if (!city) {
         return response.status(400).json({ error: "Please enter parameter 'city' " });
     }
-
     const filteredHotels = db.hotels.filter(hotel =>
         hotel.city && hotel.city.toLowerCase() === city.toLowerCase()
     );
@@ -77,7 +85,6 @@ server.put("/destinations/:id", (request, response) => {
     if (destination) {
  destination.label = updatedLabel;
         saveDatabase(db);
-        console.log(`Destination ${destinationId} updated`);
         response.json(destination);
     } else {
         response.status(404).send("Destination not found");
@@ -89,7 +96,6 @@ server.delete("/destinations/:id", (request, response) => {
     if (exists) {
         db.destination = db.destination.filter(item => item.id !== destinationId);
         saveDatabase(db);
-        console.log(`Destination ${destinationId} deleted`);
         response.status(200).json({ message: "Deleted", id: destinationId });
     } else {
         response.status(404).json({ message: "Destination not found" });
