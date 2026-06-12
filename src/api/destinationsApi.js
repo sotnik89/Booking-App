@@ -1,14 +1,14 @@
 import axios from 'axios'
 
 const API_URL = import.meta.env.VITE_API_URL;
-const API_HOTELS = import.meta.env.VITE_GET_HOTELS;
+const API_DESTINATIONS = import.meta.env.VITE_GET_DESTINATIONS;
 
-const hotelsApi = axios.create({
+const destinationsApi = axios.create({
     baseURL: API_URL
 })
 
-export const getHotels = async () => {
-    const response = await hotelsApi.get(API_HOTELS)
+export const getDestinations = async () => {
+    const response = await destinationsApi.get(API_DESTINATIONS)
 
     return response.data
 }
