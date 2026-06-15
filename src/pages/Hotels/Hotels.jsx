@@ -38,13 +38,10 @@ export default function Hotels() {
     }, [dispatch]);
     return (
         <Space orientation='vertical' size='large' style={{width: '100%'}}>
-            <div>
-                <Title level={2}>Hotels</Title>
-                <Paragraph>
-                    Search, filter and sort hotels from the catalog.
-                </Paragraph>
-            </div>
-
+            <Title level={2}>Hotels</Title>
+            <Paragraph>
+                Search, filter and sort hotels from the catalog.
+            </Paragraph>
             <HotelsFilter
                 destinations={destinations}
                 destinationsLoading={destinationsLoading}

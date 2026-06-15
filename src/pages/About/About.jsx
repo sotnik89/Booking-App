@@ -44,7 +44,10 @@ export default function About() {
             <Title level={3} style={{marginTop: 24}}>
                 Main features
             </Title>
-            <List bordered dataSource={features} renderItem={(item) => <List.Item>{item}</List.Item>}/>
+            <List
+                bordered
+                dataSource={features}
+                renderItem={(item) => <List.Item>{item}</List.Item>}/>
         </Card>
     );
 };

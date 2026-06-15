@@ -15,7 +15,7 @@ const saveDatabase = (data) => {
 
 server.get("/", (request, response) => {
     response.json({
-        message: "HotelsDetails Finder API is running",
+        message: "Hotels Details Finder API is running",
         endpoints: {
             destinations: "/destinations",
             hotels: "/hotels",
@@ -38,7 +38,7 @@ server.get("/hotels/:id", (request, response) => {
 });
 
 server.get("/hotels", (request, response) => {
-    const { search, city, destination, hotel_rating } = request.query;
+    const { search, city, destination, rating } = request.query;
     let hotels = [...db.hotels];
     if (search) {
         hotels = hotels.filter((hotel) =>
@@ -51,8 +51,8 @@ server.get("/hotels", (request, response) => {
             hotel.city && hotel.city.toLowerCase().trim() === targetCity.toLowerCase().trim()
         );
     }
-    if (hotel_rating) {
-        hotels = hotels.filter((hotel) => hotel.hotel_rating >= Number(hotel_rating));
+    if (rating) {
+        hotels = hotels.filter((hotel) => hotel.rating >= Number(rating));
     }
     response.json(hotels);
 });

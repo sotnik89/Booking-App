@@ -40,9 +40,9 @@ export default function HotelsCard({hotel}) {
                 <Text type='secondary'>
                     {hotel.address}, {hotel.city}
                 </Text>
-                <Text>Тел: {hotel.phone_number || 'Не вказано'}</Text>
+                <Text>Tel: {hotel.phone_number || 'Not specified'}</Text>
                 <Rate disabled value={hotel?.hotel_rating}/>
-                <Text>Рейтинг: {hotel?.hotel_rating} / 5</Text>
+                <Text>Rating: {hotel?.hotel_rating} / 5</Text>
                 <Link to={`/hotels/${hotel.id}`}>
                     <Button type='primary' block>Details
                     </Button>
