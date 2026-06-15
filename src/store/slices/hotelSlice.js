@@ -1,6 +1,6 @@
-import { createSlice } from '@reduxjs/toolkit';
+import {createSlice} from '@reduxjs/toolkit';
 
-import { fetchHotels, fetchHotelsById } from "../thunks/hotelsThunk.js";
+import {fetchHotels, fetchHotelsById} from "../thunks/hotelsThunk.js";
 
 const initialState = {
     hotels: [],
@@ -16,12 +16,12 @@ const initialState = {
         sortBy: '',
         order: ''
     }
-}
+};
 
-const hotelSlice = createSlice ({
+const hotelSlice = createSlice({
     name: 'hotels',
     initialState,
-    reducers:{
+    reducers: {
         setSearch: (state, action) => {
             state.filters.search = action.payload;
         },
@@ -45,7 +45,7 @@ const hotelSlice = createSlice ({
             state.currentHotelError = null;
         }
     },
-    extraReducers:(builder) => {
+    extraReducers: (builder) => {
         builder
             .addCase(fetchHotels.pending, (state) => {
                 state.loading = true;
@@ -56,10 +56,9 @@ const hotelSlice = createSlice ({
                 state.hotels = action.payload;
             })
             .addCase(fetchHotels.rejected, (state, action) => {
-            state.loading = false;
+                state.loading = false;
                 state.error = action.payload;
             })
-
             .addCase(fetchHotelsById.pending, (state) => {
                 state.currentHotelLoading = true;
                 state.currentHotelError = null;

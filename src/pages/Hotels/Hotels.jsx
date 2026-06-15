@@ -1,9 +1,9 @@
-import { useEffect, useMemo } from 'react';
+import {useEffect, useMemo} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import { Typography, Space } from 'antd';
+import {Typography, Space} from 'antd';
 
-import { fetchHotels } from '../../store/thunks/hotelsThunk.js';
-import { fetchDestinations } from '../../store/thunks/destinationsThunk.js';
+import {fetchHotels} from '../../store/thunks/hotelsThunk.js';
+import {fetchDestinations} from '../../store/thunks/destinationsThunk.js';
 
 import useDebounce from '../../hooks/useDebounce.js';
 
@@ -13,14 +13,14 @@ import HotelsFilter from './components/HotelsFilter.jsx';
 import HotelsSort from './components/HotelsSort.jsx';
 import HotelsList from './components/HotelsList.jsx';
 
-const { Title, Paragraph } = Typography;
+const {Title, Paragraph} = Typography;
 
-export default function HotelsPage() {
+export default function Hotels() {
     const dispatch = useDispatch();
-    const { hotels, loading, error, filters } = useSelector(state => state.hotels);
-    const { destinations, loading: destinationsLoading } = useSelector(state => state.destinations);
-    const debouncedSearch = useDebounce(filters.search, 3000);
-        const requestFilters = useMemo(() => {
+    const {hotels, loading, error, filters} = useSelector(state => state.hotels);
+    const {destinations, loading: destinationsLoading} = useSelector(state => state.destinations);
+    const debouncedSearch = useDebounce(filters.search, 1000);
+    const requestFilters = useMemo(() => {
         return {
             search: debouncedSearch,
             city: filters.city,
@@ -35,10 +35,9 @@ export default function HotelsPage() {
     }, [requestFilters, dispatch]);
     useEffect(() => {
         dispatch(fetchDestinations());
-        }, [dispatch]);
-
+    }, [dispatch]);
     return (
-        <Space orientation="vertical" size="large" style={{ width: '100%' }}>
+        <Space orientation='vertical' size='large' style={{width: '100%'}}>
             <div>
                 <Title level={2}>Hotels</Title>
                 <Paragraph>
@@ -50,10 +49,10 @@ export default function HotelsPage() {
                 destinations={destinations}
                 destinationsLoading={destinationsLoading}
             />
-            <HotelsSort />
-            {loading && <Loader />}
-            {error && <ErrorMessage message={error} />}
-            {!loading && !error && <HotelsList hotels={hotels} />}
+            <HotelsSort/>
+            {loading && <Loader/>}
+            {error && <ErrorMessage message={error}/>}
+            {!loading && !error && <HotelsList hotels={hotels}/>}
         </Space>
     );
-}
+};

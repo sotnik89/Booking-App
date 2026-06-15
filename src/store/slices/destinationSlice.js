@@ -1,6 +1,6 @@
-import { createSlice } from '@reduxjs/toolkit';
+import {createSlice} from '@reduxjs/toolkit';
 
-import { fetchDestinations } from "../thunks/destinationsThunk.js";
+import {fetchDestinations} from "../thunks/destinationsThunk.js";
 
 const initialState = {
     destinations: [],
@@ -14,13 +14,13 @@ const initialState = {
         sortBy: '',
         order: ''
     }
-}
+};
 
-const destinationSlice = createSlice ({
+const destinationSlice = createSlice({
     name: 'destinations',
     initialState,
-    reducers:{},
-    extraReducers:(builder) => {
+    reducers: {},
+    extraReducers: (builder) => {
         builder
             .addCase(fetchDestinations.pending, (state) => {
                 state.loading = true;

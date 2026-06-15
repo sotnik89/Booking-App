@@ -1,29 +1,29 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import {createAsyncThunk} from "@reduxjs/toolkit";
 
-import { getHotels, getHotelsById } from '../../api/hotelsApi.js';
+import {getHotels, getHotelsById} from '../../api/hotelsApi.js';
 
 export const fetchHotels = createAsyncThunk(
     'hotels/fetchHotels',
-    async(params, {rejectWithValue}) => {
+    async (params, {rejectWithValue}) => {
         try {
             return await getHotels(params);
         } catch (error) {
-            return rejectWithValue (
+            return rejectWithValue(
                 error.response?.data?.message || 'Failed to fetch hotels'
             );
         }
     }
-)
+);
 
 export const fetchHotelsById = createAsyncThunk(
     'hotels/fetchHotelsById',
-    async(id, {rejectWithValue}) => {
+    async (id, {rejectWithValue}) => {
         try {
             return await getHotelsById(id);
         } catch (error) {
-            return rejectWithValue (
+            return rejectWithValue(
                 error.response?.data?.message || 'Failed to fetch hotel'
             );
         }
     }
-)
+);

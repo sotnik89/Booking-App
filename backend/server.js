@@ -15,7 +15,7 @@ const saveDatabase = (data) => {
 
 server.get("/", (request, response) => {
     response.json({
-        message: "Hotels Finder API is running",
+        message: "HotelsDetails Finder API is running",
         endpoints: {
             destinations: "/destinations",
             hotels: "/hotels",
