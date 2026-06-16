@@ -1,4 +1,4 @@
-import {Empty, Row, Col} from 'antd';
+import { Empty, Row, Col } from 'antd';
 
 import HotelsCard from './HotelsCard.jsx';
 
@@ -6,7 +6,6 @@ export default function HotelsList({hotels}) {
     if (!hotels?.length) {
         return <Empty description='Hotels not found'/>;
     }
-
     return (
         <Row gutter={[16, 16]}>
             {hotels.map((hotel) => (
@@ -16,4 +15,4 @@ export default function HotelsList({hotels}) {
             ))}
         </Row>
     );
-}
+};

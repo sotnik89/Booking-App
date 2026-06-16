@@ -1,6 +1,6 @@
-import {createSlice} from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
-import {fetchHotels, fetchHotelsById} from "../thunks/hotelsThunk.js";
+import { fetchHotels, fetchHotelsById } from '../thunks/hotelsThunk.js';
 
 const initialState = {
     hotels: [],

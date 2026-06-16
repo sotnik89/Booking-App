@@ -52,7 +52,7 @@ server.get("/hotels", (request, response) => {
         );
     }
     if (rating) {
-        hotels = hotels.filter((hotel) => hotel.rating >= Number(rating));
+        hotels = hotels.filter((hotel) => hotel.hotel_rating >= Number(rating));
     }
     response.json(hotels);
 });

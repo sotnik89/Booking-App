@@ -1,6 +1,6 @@
-import {Card, List, Typography} from 'antd';
+import { Card, List, Typography } from 'antd';
 
-const {Title, Paragraph} = Typography;
+const { Title, Paragraph } = Typography;
 
 const technologies = [
     'React',

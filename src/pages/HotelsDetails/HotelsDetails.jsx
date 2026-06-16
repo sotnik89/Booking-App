@@ -1,10 +1,10 @@
-import {useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {useNavigate, useParams} from 'react-router-dom';
-import {Button, Card, Col, Image, Row, Space, Tag, Typography, Rate} from 'antd';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
+import { Button, Card, Col, Image, Row, Space, Tag, Typography, Rate } from 'antd';
 
-import {fetchHotelsById} from '../../store/thunks/hotelsThunk.js';
-import {clearCurrentHotel} from '../../store/slices/hotelSlice.js';
+import { fetchHotelsById } from '../../store/thunks/hotelsThunk.js';
+import { clearCurrentHotel } from '../../store/slices/hotelSlice.js';
 
 import Loader from '../../components/Loader/Loader';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
@@ -50,7 +50,6 @@ export default function HotelsDetails() {
     }
     const imageIndex = currentHotel.id ? (currentHotel.id % hotelImages.length) : 0;
     const localHotelImage = hotelImages[imageIndex];
-
     return (
         <Card>
             <Row gutter={[32, 32]}>

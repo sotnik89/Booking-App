@@ -1,6 +1,6 @@
-import {createAsyncThunk} from "@reduxjs/toolkit";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
-import {getHotels, getHotelsById} from '../../api/hotelsApi.js';
+import { getHotels, getHotelsById } from '../../api/hotelsApi.js';
 
 export const fetchHotels = createAsyncThunk(
     'hotels/fetchHotels',

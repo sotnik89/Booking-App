@@ -1,4 +1,4 @@
-import {configureStore} from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 
 import hotelsReducer from './slices/hotelSlice.js';
 import destinationsReducer from './slices/destinationSlice.js';

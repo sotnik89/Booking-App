@@ -1,6 +1,6 @@
-import {createSlice} from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
-import {fetchDestinations} from "../thunks/destinationsThunk.js";
+import { fetchDestinations } from '../thunks/destinationsThunk.js';
 
 const initialState = {
     destinations: [],

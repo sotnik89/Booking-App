@@ -1,7 +1,7 @@
-import {useDispatch, useSelector} from 'react-redux';
-import {Card, Col, Row, Select} from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
+import { Card, Col, Row, Select } from 'antd';
 
-import {setSortBy, setOrder} from '../../../store/slices/hotelSlice.js';
+import { setSortBy, setOrder } from '../../../store/slices/hotelSlice.js';
 
 const sortByOptions = [
     {label: 'Name', value: 'name'},
@@ -17,7 +17,6 @@ const orderOptions = [
 export default function HotelsSort() {
     const dispatch = useDispatch();
     const {filters} = useSelector((state) => state.hotels);
-
     return (
         <Card title='Sorting'>
             <Row gutter={[16, 16]}>
@@ -33,7 +32,6 @@ export default function HotelsSort() {
                         style={{width: '100%'}}
                     />
                 </Col>
-
                 <Col xs={24} md={12}>
                     <Select
                         value={filters.order}
@@ -47,4 +45,4 @@ export default function HotelsSort() {
             </Row>
         </Card>
     );
-}
+};

@@ -1,7 +1,7 @@
-import {Link} from 'react-router-dom';
-import {Button, Card, Space, Typography} from 'antd';
+import { Link } from 'react-router-dom';
+import { Button, Card, Space, Typography } from 'antd';
 
-const {Title, Paragraph} = Typography;
+const { Title, Paragraph } = Typography;
 
 export default function Main() {
     return (

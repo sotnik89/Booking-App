@@ -1,5 +1,5 @@
-import {Outlet, NavLink} from 'react-router-dom';
-import {Layout as AntLayout, Menu, Typography} from 'antd';
+import { Outlet, NavLink } from 'react-router-dom';
+import { Layout as AntLayout, Menu, Typography } from 'antd';
 
 const {Header, Content, Footer} = AntLayout;
 const {Text} = Typography;
@@ -16,6 +16,10 @@ const menuItems = [
     {
         key: '/about',
         label: <NavLink to='/about'>About</NavLink>
+    },
+    {
+        key: '/contactus',
+        label: <NavLink to='/registration'>Registration</NavLink>
     }
 ];
 export default function MainLayout() {

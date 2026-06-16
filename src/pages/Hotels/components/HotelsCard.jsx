@@ -1,5 +1,5 @@
-import {Button, Card, Rate, Space, Typography} from 'antd';
-import {Link} from 'react-router-dom';
+import { Button, Card, Rate, Space, Typography } from 'antd';
+import { Link } from 'react-router-dom';
 
 import hotel1 from '../../../assets/img/hotel1.jpg';
 import hotel2 from '../../../assets/img/hotel2.jpg';
@@ -50,4 +50,4 @@ export default function HotelsCard({hotel}) {
             </Space>
         </Card>
     );
-}
+};

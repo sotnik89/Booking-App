@@ -1,9 +1,9 @@
-import {useEffect, useMemo} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {Typography, Space} from 'antd';
+import { useEffect, useMemo } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Typography, Space } from 'antd';
 
-import {fetchHotels} from '../../store/thunks/hotelsThunk.js';
-import {fetchDestinations} from '../../store/thunks/destinationsThunk.js';
+import { fetchHotels } from '../../store/thunks/hotelsThunk.js';
+import { fetchDestinations } from '../../store/thunks/destinationsThunk.js';
 
 import useDebounce from '../../hooks/useDebounce.js';
 

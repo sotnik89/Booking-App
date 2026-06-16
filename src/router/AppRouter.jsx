@@ -5,6 +5,7 @@ import Main from '../pages/Main/Main.jsx';
 import About from '../pages/About/About.jsx';
 import Hotels from '../pages/Hotels/Hotels.jsx';
 import HotelsDetails from '../pages/HotelsDetails/HotelsDetails.jsx';
+import Registration from "../pages/Registration/Registration.jsx";
 
 export default function AppRouter() {
     return (
@@ -14,6 +15,7 @@ export default function AppRouter() {
                 <Route path='/hotels' element={<Hotels/>}/>
                 <Route path='/about' element={<About/>}/>
                 <Route path='/hotels/:id' element={<HotelsDetails/>}/>
+                <Route path='/registration' element={<Registration/>}/>
             </Route>
         </Routes>
     );

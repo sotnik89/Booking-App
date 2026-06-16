@@ -1,5 +1,5 @@
-import {useSelector, useDispatch} from 'react-redux';
-import {Button, Card, Col, Input, InputNumber, Row, Select} from 'antd';
+import { useSelector, useDispatch } from 'react-redux';
+import { Button, Card, Col, Input, InputNumber, Row, Select } from 'antd';
 
 import {
     setSearch,
@@ -15,7 +15,6 @@ export default function HotelsFilter({destinations = [], destinationsLoading = f
         label: destination.label,
         value: destination.label,
     }));
-
     return (
         <Card title='Filters'>
             <Row gutter={[16, 16]}>
