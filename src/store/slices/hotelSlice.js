@@ -38,8 +38,11 @@ const hotelSlice = createSlice({
             state.filters.order = action.payload;
         },
         resetFilters: (state) => {
-            state.filters = initialState.filters
+            state.filters = { ...initialState.filters };
         },
+        // resetFilters: (state) => {
+        //     state.filters = initialState.filters
+        // },
         clearCurrentHotel: (state) => {
             state.currentHotel = null;
             state.currentHotelError = null;

@@ -1,6 +1,6 @@
-import express from "express";
-import cors from "cors";
-import fs from "fs";
+import express from 'express';
+import cors from 'cors';
+import fs from 'fs';
 import db from './db.json' with { type: 'json'};
 
 const server = express();
@@ -13,32 +13,36 @@ const saveDatabase = (data) => {
     fs.writeFileSync('./db.json', JSON.stringify(data, null, 2), 'utf-8');
 };
 
-server.get("/", (request, response) => {
+server.get('/', (request, response) => {
     response.json({
-        message: "Hotels Details Finder API is running",
+        message: 'Hotels Details Finder API is running',
         endpoints: {
-            destinations: "/destinations",
-            hotels: "/hotels",
-            hotelById: "/hotels/:id"
+            destinations: '/destinations',
+            hotels: '/hotels',
+            hotelById: '/hotels/:id'
         }
     });
 });
-server.get("/destinations", (request, response) => {
+server.get('/destinations', (request, response) => {
     response.json(db.destination);
 });
 
-server.get("/hotels/:id", (request, response) => {
+server.get('/hotels/:id', (request, response) => {
     const hotelId = +request.params.id;
     const hotel = db.hotels.find((item) => item.id === hotelId);
     if (hotel) {
         response.json(hotel);
     } else {
-        response.status(404).json({error: "Hotel not found"});
+        response.status(404).json({error: 'Hotel not found'});
     }
 });
 
-server.get("/hotels", (request, response) => {
+server.get('/hotels', (request, response) => {
     const { search, city, destination, rating } = request.query;
+
+    const sortBy = request.query.sortBy || 'hotel_rating';
+    const order = request.query.order || 'asc';
+
     let hotels = [...db.hotels];
     if (search) {
         hotels = hotels.filter((hotel) =>
@@ -54,13 +58,31 @@ server.get("/hotels", (request, response) => {
     if (rating) {
         hotels = hotels.filter((hotel) => hotel.hotel_rating >= Number(rating));
     }
+    hotels.sort((a, b) => {
+        let fieldA = a[sortBy];
+        let fieldB = b[sortBy];
+
+        if (fieldA === undefined || fieldA === null) return 1;
+        if (fieldB === undefined || fieldB === null) return -1;
+
+        if (typeof fieldA === 'string') fieldA = fieldA.toLowerCase();
+        if (typeof fieldB === 'string') fieldB = fieldB.toLowerCase();
+
+        if (fieldA < fieldB) {
+            return order === 'asc' ? -1 : 1;
+        }
+        if (fieldA > fieldB) {
+            return order === 'asc' ? 1 : -1;
+        }
+        return 0;
+    });
     response.json(hotels);
 });
 
 server.post('/search', (request, response) => {
     const { city } = request.body;
     if (!city) {
-        return response.status(400).json({ error: "Please enter parameter 'city' " });
+        return response.status(400).json({ error: 'Please enter parameter "city" ' });
     }
     const filteredHotels = db.hotels.filter(hotel =>
         hotel.city && hotel.city.toLowerCase() === city.toLowerCase()
@@ -68,17 +90,16 @@ server.post('/search', (request, response) => {
     response.json(filteredHotels);
 });
 
-server.post("/destinations", (request, response) => {
+server.post('/destinations', (request, response) => {
     const newDestination = {
         id: db.destination.length ? db.destination[db.destination.length - 1].id + 1 : 1,
         label: request.body.label
     };
     db.destination.push(newDestination);
     saveDatabase(db);
-    console.log("Added:", newDestination);
     response.status(201).json(newDestination);
-})
-server.put("/destinations/:id", (request, response) => {
+});
+server.put('/destinations/:id', (request, response) => {
     const destinationId = +request.params.id;
     const updatedLabel = request.body.label;
     const destination = db.destination.find(item => item.id === destinationId);
@@ -87,20 +108,20 @@ server.put("/destinations/:id", (request, response) => {
         saveDatabase(db);
         response.json(destination);
     } else {
-        response.status(404).send("Destination not found");
+        response.status(404).send('Destination not found');
     }
-})
-server.delete("/destinations/:id", (request, response) => {
+});
+server.delete('/destinations/:id', (request, response) => {
     const destinationId = +request.params.id;
     const exists = db.destination.find(item => item.id === destinationId);
     if (exists) {
         db.destination = db.destination.filter(item => item.id !== destinationId);
         saveDatabase(db);
-        response.status(200).json({ message: "Deleted", id: destinationId });
+        response.status(200).json({ message: 'Deleted', id: destinationId });
     } else {
-        response.status(404).json({ message: "Destination not found" });
+        response.status(404).json({ message: 'Destination not found' });
     }
-})
+});
 server.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`)
-})
+});

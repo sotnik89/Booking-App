@@ -43,7 +43,7 @@ export default function HotelsFilter({destinations = [], destinationsLoading = f
                 </Col>
                 <Col xs={24} md={4}>
                     <InputNumber
-                        placeholder='Rating'
+                        placeholder='Min rating'
                         value={filters.rating || undefined}
                         min={0}
                         max={5}

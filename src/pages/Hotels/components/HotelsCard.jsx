@@ -34,11 +34,11 @@ export default function HotelsCard({hotel}) {
             }
         >
             <Space orientation='vertical' size='small' style={{width: '100%'}}>
-                <Text strong style={{fontSize: '16px', display: 'block'}}>
+                <Text strong style={{fontSize: '16px', display: 'block', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                     {hotel.name}
                 </Text>
-                <Text type='secondary'>
-                    {hotel.address}, {hotel.city}
+                <Text type='secondary' style={{display: 'block', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                    {hotel.city}, {hotel.address}
                 </Text>
                 <Text>Tel: {hotel.phone_number || 'Not specified'}</Text>
                 <Rate disabled value={hotel?.hotel_rating}/>
